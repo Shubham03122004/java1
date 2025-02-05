@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 1 - JavaScript Essentials</title>
+</head>
+<body>
+    <script>
+        // Function to convert kg to lb
+        function convertKgToLb(kg) {
+            return kg / 0.45359237;
+        }
+
+        // Function to convert lb to kg
+        function convertLbToKg(lb) {
+            return lb * 0.45359237;
+        }
+
+        // Main program logic
+        let userChoice;
+        let isValidChoice = false;
+
+        // Loop to validate user's choice (1, 2, or 3)
+        do {
+            userChoice = prompt("Input 1 for converting kg to lb, or input 2 for converting lb to kg, or input 3 to exit:");
+            userChoice = parseInt(userChoice); // Convert input to integer
+            if (userChoice === 1 || userChoice === 2 || userChoice === 3) {
+                isValidChoice = true;
+            } else {
+                alert("Invalid input. Please enter 1, 2, or 3.");
+            }
+        } while (!isValidChoice);
+
+        // If user chooses to convert (1 or 2)
+        if (userChoice === 1 || userChoice === 2) {
+            let userValue;
+            let isValidValue = false;
+
+            // Loop to validate user's numeric input
+            do {
+                userValue = prompt("Enter the numeric value to convert:");
+                userValue = parseFloat(userValue); // Convert input to float
+                if (!isNaN(userValue) && userValue > 0) { // Ensure input is a positive number
+                    isValidValue = true;
+                } else {
+                    alert("Invalid input. Please enter a valid numeric value greater than 0.");
+                }
+            } while (!isValidValue);
+
+            // Perform conversion based on user's choice
+            let result;
+            let inputUnit, outputUnit;
+
+            switch (userChoice) {
+                case 1:
+                    result = convertKgToLb(userValue);
+                    inputUnit = "kg";
+                    outputUnit = "lb";
+                    break;
+                case 2:
+                    result = convertLbToKg(userValue);
+                    inputUnit = "lb";
+                    outputUnit = "kg";
+                    break;
+            }
+
+            // Display the result
+            document.write(`<p>${userValue} ${inputUnit} is equal to ${result.toFixed(2)} ${outputUnit}.</p>`);
+        } else if (userChoice === 3) {
+            // Exit the program
+            document.write("<p>You chose to exit. Goodbye!</p>");
+        }
+    </script>
+</body>
+</html>
